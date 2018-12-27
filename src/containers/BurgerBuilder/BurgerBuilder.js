@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-
+import React, { Component } from 'react';
 import Aux from '../../hoc/Aux';
-import Burger from '../../components/Burger/Burger';
-import BuildControls from '../../components/Burger/BuildControls/BuildControls';
-import Modal from '../../components/UI/Modal/Modal';
-import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
-import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler';
 import axios from '../../axios-orders';
+
+import Burger from '../../components/Burger/Burger';
+import BuildControls from '../../components/Burger/BuildControls/BuildControls';
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
+import Spinner from '../../components/UI/Spinner/Spinner';
+import Modal from '../../components/UI/Modal/Modal';
 
 const INGREDIENTS_COSTS = {
   cheese: 0.8,
@@ -27,7 +27,6 @@ class BurgerBuilder extends Component {
   };
 
   componentDidMount() {
-    console.log('It is');
     axios.get('/ingredients.json')
       .then( response => {
         this.setState({
@@ -52,24 +51,20 @@ class BurgerBuilder extends Component {
   }
 
   purchaseContinueHandler = () => {
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.totalPrice
+    const queryParams = [];
+
+    for (let i in this.state.ingredients) {
+      queryParams.push(`${encodeURIComponent(i)}=${encodeURIComponent(this.state.ingredients[i])}`)
     }
-    this.setState({loading: true});
-    axios.post('/orders.json', order)
-      .then(response => {
-        this.setState({
-          loading: false,
-          purchasing: false
-        })
-      })
-      .catch(error => {
-        this.setState({
-          loading: false,
-          purchasing: false
-        })
-      })
+
+    queryParams.push(`${encodeURIComponent('price')}=${encodeURIComponent(this.state.totalPrice)}`)
+
+    const queryString = queryParams.join('&');
+
+    this.props.history.push({
+      pathname: '/checkout',
+      search: `?${queryString}`
+    });
   }
 
   addIngredientHandler = (type) => {
@@ -131,7 +126,7 @@ class BurgerBuilder extends Component {
       orderSummary = <OrderSummary
           price={this.state.totalPrice}
           ingredients={this.state.ingredients}
-          purchaseCanceled={this.purchaseCancelHandler}
+          purchaseCancelled={this.purchaseCancelHandler}
           purchaseContinued={this.purchaseContinueHandler} />;
     }
 
@@ -141,7 +136,9 @@ class BurgerBuilder extends Component {
 
     return (
       <Aux>
-        <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
+        <Modal
+          show={this.state.purchasing}
+          modalClosed={this.purchaseCancelHandler}>
           {orderSummary}
         </Modal>
         {burger}
