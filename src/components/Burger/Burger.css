@@ -1,32 +1,53 @@
 .Burger {
-  width: 100%;
-  margin: auto;
-  height: 250px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.2rem;
-  overflow-y: auto;
+    width: 100%;
+    margin: auto;
+    height: 250px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    overflow-y: auto;
+}
+
+.Tip {
+    box-sizing: border-box;
+    border: 3px solid #8bc34a;
+    border-radius: 12px;
+    width: 80%;
+    margin: auto;
+    color: #8bc34a;
 }
 
 @media (min-width: 500px) and (min-height: 400px) {
     .Burger {
-      width: 350px;
-      height: 300px;
+        width: 350px;
+        height: 300px;
+    }
+
+    .Tip {
+        width: 200px;
     }
 }
 
 
 @media (min-width: 500px) and (min-height: 401px) {
     .Burger {
-      width: 450px;
-      height: 400px;
+        width: 450px;
+        height: 400px;
+    }
+
+    .Tip {
+        width: 360px;
     }
 }
 
 
 @media (min-width: 1000px) and (min-height: 700px) {
     .Burger {
-      width: 700px;
-      height: 600px;
+        width: 700px;
+        height: 600px;
+    }
+
+    .Tip {
+        width: 560px;
     }
 }

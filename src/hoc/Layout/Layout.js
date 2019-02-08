@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import Aux from '../Aux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
@@ -7,33 +8,39 @@ import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 import classes from './Layout.css';
 
 class Layout extends Component {
-  state = {
-    showSideDrawer: false
-  }
+    state = {
+        showSideDrawer: false
+    };
 
-  sideDrawerToggleHandler = () => {
-    this.setState( prevState => {
-      return ({showSideDrawer: !prevState.showSideDrawer})
-    })
-  }
+    sideDrawerToggleHandler = () => {
+        this.setState(prevState => {
+            return ({showSideDrawer: !prevState.showSideDrawer})
+        })
+    };
 
-  sideDrawerClosedHandler = () => {
-    this.setState({
-      showSideDrawer: false
-    })
-  }
+    sideDrawerClosedHandler = () => {
+        this.setState({
+            showSideDrawer: false
+        })
+    };
 
-  render() {
-    return (
-      <Aux>
-        <SideDrawer open={this.state.showSideDrawer} closed={this.sideDrawerClosedHandler} />
-        <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
-        <main className={classes.Content}>
-          {this.props.children}
-        </main>
-      </Aux>
-    )
-  }
+    render() {
+        return (
+            <>
+                <SideDrawer open={this.state.showSideDrawer} closed={this.sideDrawerClosedHandler}/>
+                <Toolbar isAuth={this.props.isAuth} drawerToggleClicked={this.sideDrawerToggleHandler}/>
+                <main className={classes.Content}>
+                    {this.props.children}
+                </main>
+            </>
+        )
+    }
 }
 
-export default Layout;
+const mapStateToProps = state => {
+    return {
+        isAuth: state.auth.token !== null
+    }
+};
+
+export default withRouter(connect(mapStateToProps)(Layout));

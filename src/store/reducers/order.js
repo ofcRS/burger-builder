@@ -29,7 +29,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false
             };
-        case (actionTypes.START_PURCHASE_BURGER):
+        case (actionTypes.PURCHASE_BURGER_START):
             return {
                 ...state,
                 loading: true
@@ -45,7 +45,7 @@ const reducer = (state = initialState, action) => {
               ...state,
               loading: false
             };
-        case (actionTypes.START_FETCH_ORDERS):
+        case (actionTypes.FETCH_ORDERS_START):
             return {
                 ...state,
                 loading: true

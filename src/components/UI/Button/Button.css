@@ -16,8 +16,8 @@
 }
 
 .Button:disabled {
-  color: #ef5350;
-  cursor: not-allowed;
+    color: #ef5350;
+    cursor: not-allowed;
 }
 
 .Success {

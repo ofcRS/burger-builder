@@ -8,7 +8,7 @@ export const initIngredients = () => {
                 dispatch({type: actionTypes.INIT_INGREDIENTS, ingredients: response.data})
             })
             .catch( () => {
-                dispatch({type: actionTypes.FETCH_INGREDIENTS_FAIL})
+                dispatch({type: actionTypes.INIT_INGREDIENTS_FAIL})
             })
     }
 };

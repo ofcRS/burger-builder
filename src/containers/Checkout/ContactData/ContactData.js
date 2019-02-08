@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
@@ -126,10 +126,11 @@ class ContactData extends Component {
     const order = {
       ingredients: this.props.ings,
       price: this.props.price,
-      orderData: formData
+        orderData: formData,
+        userId: this.props.userId
     };
 
-    this.props.onBurgerPurchase(order)
+      this.props.onBurgerPurchase(order, this.props.token)
   };
 
   render() {
@@ -176,13 +177,15 @@ const mapStateToProps = state => {
   return {
     ings: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,
-    loading: state.contactData.loading
+      loading: state.order.loading,
+      token: state.auth.token,
+      userId: state.auth.userId
   }
 };
 
 const mapActionToProps = dispatch => {
   return {
-    onBurgerPurchase: orderData => dispatch(actions.purchaseBurger(orderData))
+      onBurgerPurchase: (orderData, token) => dispatch(actions.purchaseBurger(orderData, token))
   }
 };
 
