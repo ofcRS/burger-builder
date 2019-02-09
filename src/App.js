@@ -21,8 +21,8 @@ class App extends Component {
             <>
                 <Suspense fallback={null}>
                     <Switch>
-                        <Route path="/auth" component={Auth}/>
-                        <Route path="/" component={BurgerBuilder}/>
+                        <Route path="/auth" component={props => <Auth {...props} />}/>
+                        <Route path="/" component={props => <BurgerBuilder {...props} />}/>
                         <Redirect to="/"/>
                     </Switch>
                 </Suspense>
@@ -34,11 +34,11 @@ class App extends Component {
                 <>
                     <Suspense fallback={null}>
                         <Switch>
-                            <Route path="/checkout" component={Checkout}/>
-                            <Route path="/orders" component={Orders}/>
-                            <Route path="/auth" component={Auth}/>
-                            <Route path="/logout" component={Logout}/>
-                            <Route path="/" component={BurgerBuilder}/>
+                            <Route path="/checkout" component={props => <Checkout {...props} />}/>
+                            <Route path="/orders" component={props => <Orders {...props} />} />
+                            <Route path="/auth" component={props => <Auth {...props} />}/>
+                            <Route path="/logout" component={props => <Logout {...props} />}/>
+                            <Route path="/" component={props => <BurgerBuilder {...props} />}/>
                             <Redirect to="/"/>
                         </Switch>
                     </Suspense>
