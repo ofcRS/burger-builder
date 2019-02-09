@@ -25,7 +25,6 @@ export const fetchOrders = (token) => {
         dispatch({type: actionTypes.FETCH_ORDERS_START});
         axios.get(`/orders.json?auth=${token}`)
             .then(response => {
-                console.log(response);
                 const fetchedOrders = [];
                 for (let key in response.data) {
                     fetchedOrders.push({

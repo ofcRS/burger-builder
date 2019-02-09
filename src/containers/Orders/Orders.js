@@ -24,7 +24,6 @@ class Orders extends Component {
                     price={order.price}
                     contacts={order.contacts}/>
             ));
-            console.log(orders);
         }
 
         return (

@@ -22,7 +22,7 @@
 
 .BuildControl button:disabled {
     background-color: #8fac6c;
-    border: 1px solid #7E7365;
+    border: none;
     color: #ccc;
     cursor: default;
 }
@@ -40,11 +40,13 @@
 }
 
 .BuildControl .Less {
+    border: 1px solid #7E7365;
     background-color: #b4f368;
     color: white;
 }
 
 .BuildControl .More {
+    border: 1px solid #7E7365;
     background-color: #b4f368;
     color: white;
 }

@@ -17,15 +17,6 @@ class BurgerBuilder extends Component {
 
     componentDidMount() {
         this.props.onInitIngredients();
-        // axios.get('/ingredients.json')
-        //   .then( response => {
-        //     this.setState({
-        //       ingredients: response.data
-        //     })
-        //   })
-        //   .catch( error => {
-        //     this.setState({ error: true })
-        //   })
     };
 
     purchaseHandler = () => {
@@ -50,29 +41,6 @@ class BurgerBuilder extends Component {
             pathname: '/checkout'
         });
     };
-
-    // addIngredientHandler = (type) => {
-    //   const newIngredients = {
-    //     ...this.state.ingredients
-    //   };
-    //   newIngredients[type] += 1;
-    //   const newTotalPrice = this.state.totalPrice + INGREDIENTS_COSTS[type];
-    //   this.setState({ingredients: newIngredients, totalPrice: newTotalPrice});
-    //   this.updatePurchasable(newIngredients);
-    // };
-    //
-    // removeIngredientHandler = (type) => {
-    //   const newIngredients = {
-    //     ...this.state.ingredients
-    //   };
-    //   newIngredients[type] -= 1;
-    //   if (newIngredients[type] < 0) {
-    //     return;
-    //   }
-    //   const newTotalPrice = this.state.totalPrice - INGREDIENTS_COSTS[type];
-    //   this.setState({ingredients: newIngredients, totalPrice: newTotalPrice});
-    //   this.updatePurchasable(newIngredients);
-    // }
 
     static updatePurchasable(ingredients) {
         return (Object.values(ingredients).reduce((sum, el) => {

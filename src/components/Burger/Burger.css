@@ -10,11 +10,11 @@
 
 .Tip {
     box-sizing: border-box;
-    border: 3px solid #8bc34a;
     border-radius: 12px;
     width: 80%;
     margin: auto;
-    color: #8bc34a;
+    color: #FF9800;
+    text-shadow: #BF4C0A 1px 1px 1px;
 }
 
 @media (min-width: 500px) and (min-height: 400px) {
